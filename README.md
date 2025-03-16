@@ -3,6 +3,7 @@ This project is finetuned from ChatTTS.
 ## Environment
 
 - **Python Version**: Python 3.10+
+
 Make sure Python 3.10+ is installed and active in your environment.
 
 ## Installation
