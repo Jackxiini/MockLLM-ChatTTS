@@ -52,6 +52,3 @@ CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.finetune \
 ```
 Make sure to update data_path to point to your dataset's .list file.
 
-## Post-training Steps
-After fine-tuning, compute the SHA256 hash of your trained model and Update the corresponding SHA256 value in sha256_map.json with the output from this script. (need to be updated in the future)
-
