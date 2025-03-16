@@ -1,6 +1,6 @@
 """
-CUDA_VISIBLE_DEVICES=0 python examples/finetune/finetune.py --color --save_folder ./saved_models --data_path data/Xz/Bekki.list --tar_path data/Xz.tar --batch_size 32 --epochs 10 --train_module dvae
-CUDA_VISIBLE_DEVICES=0 python examples/finetune/finetune.py --color --save_folder ./saved_models --data_path data/Xz/Bekki.list --tar_path data/Xz.tar --batch_size 16 --epochs 10 --train_module gpt_speaker
+CUDA_VISIBLE_DEVICES=0 python examples/finetune/finetune.py --color --save_folder ./saved_models --data_path 888.list --tar_path data/Xz.tar --batch_size 32 --epochs 10 --train_module dvae
+CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.finetune --color --save_folder ./saved_models --data_path 888.list --tar_path data/Xz.tar --batch_size 32 --epochs 10 --train_module gpt_speaker
 
 --gpt_lora --tar_in_memory --process_ahead
 
@@ -16,8 +16,10 @@ import numpy as np
 import ChatTTS
 import ChatTTS.model.gpt
 import ChatTTS.model.dvae
-from ChatTTS.utils.finetune.dataset import XzListTar
-from ChatTTS.utils.finetune.train import TrainModule, train_autoencoder, train_gpt
+from ChatTTS.train.dataset import XzListTar
+from ChatTTS.train.model import TrainModule, train_autoencoder, train_gpt
+
+from tools.normalizer import load_normalizer
 
 logging.basicConfig(level=logging.ERROR)
 
@@ -70,7 +72,7 @@ def main():
     tar_path: str | None = args.tar_path
     tar_in_memory: bool = args.tar_in_memory
     process_ahead: bool = args.process_ahead
-    train_module: TrainModule = args.train_module
+    train_module = TrainModule(args.train_module)
     train_text: bool = args.train_text
     gpt_lora: bool = args.gpt_lora
     # gpt_kbit: int = args.gpt_kbit
@@ -137,6 +139,8 @@ def main():
         case _:
             raise ValueError(f"invalid train_module: {train_module}")
 
+    load_normalizer(chat)
+
     dataset = XzListTar(
         root=data_path,
         tokenizer=chat.tokenizer._tokenizer,
@@ -160,7 +164,7 @@ def main():
     gpt_save_path = os.path.join(save_folder, "gpt.pth")
     speaker_embeds_save_path = os.path.join(save_folder, "speaker_embeds.npz")
     decoder_save_path = os.path.join(save_folder, "decoder.pth")
-    dvae_save_path = os.path.join(save_folder, "dvae.pth")
+    dvae_save_path = os.path.join(save_folder, "DVAE_full.pt")
     if train_module in [TrainModule.GPT_SPEAKER, TrainModule.GPT] and gpt_lora:
         chat.gpt.gpt = chat.gpt.gpt.merge_and_unload()
     if speaker_embeds is not None:
