@@ -21,7 +21,7 @@ You can modify the text content inside test.py to generate audio from your custo
 
 ## Fine-tuning
 You can fine-tune the DVAE and GPT modules using your own dataset.
-
+Note: Fine-tuning starts from the pre-trained models located in the asset folder (e.g., DVAE_full.pt, Decoder.pt).
 ## Prepare Your Data
 Prepare your .wav audio files and create a .list file formatted according to the provided examples.
 
