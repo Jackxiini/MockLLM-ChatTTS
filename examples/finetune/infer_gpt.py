@@ -1,6 +1,5 @@
 """
-CUDA_VISIBLE_DEVICES=0 python examples/finetune/infer_gpt.py --text "你好，我是恬豆"
---gpt_path ./saved_models/gpt.pth --decoder_path ./saved_models/decoder.pth --speaker_embeds_path ./saved_models/speaker_embeds.npz
+CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.infer_gpt --text "你好，我是恬豆" --gpt_path ./saved_models/gpt.pth --dvae_path ./saved_models/dvae.pth --decoder_path ./saved_models/decoder.pth --speaker_embeds_path ./saved_models/speaker_embeds.npz
 """
 
 import argparse

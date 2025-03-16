@@ -1,6 +1,5 @@
 """
-CUDA_VISIBLE_DEVICES=0 python examples/finetune/infer_autoencoder.py --data_path data/Xz/Bekki.list --tar_path data/Xz.tar
---dvae_path saved_models/dvae.pth
+CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.infer_autoencoder --data_path E:/Code/AudioLLM/Xz/888.list --tar_path data/Xz.tar --dvae_path saved_models/dvae.pth
 """
 
 import argparse
@@ -13,7 +12,7 @@ import torchaudio
 import ChatTTS
 import ChatTTS.model.gpt
 import ChatTTS.model.dvae
-from ChatTTS.utils.finetune.dataset import XzListTar, AudioCollator
+from ChatTTS.train.dataset import XzListTar, AudioCollator
 from ChatTTS.utils.finetune.model import (
     get_mel_specs,
     get_mel_attention_mask,

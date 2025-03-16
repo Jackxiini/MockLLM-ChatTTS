@@ -1,8 +1,6 @@
 """
-CUDA_VISIBLE_DEVICES=0 python examples/finetune/finetune.py --color --save_folder ./saved_models --data_path 888.list --tar_path data/Xz.tar --batch_size 32 --epochs 10 --train_module dvae
-CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.finetune --color --save_folder ./saved_models --data_path 888.list --tar_path data/Xz.tar --batch_size 32 --epochs 10 --train_module gpt_speaker
-
---gpt_lora --tar_in_memory --process_ahead
+CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.finetune --color --save_folder ./saved_models --data_path E:/Code/AudioLLM/Xz/888.list --tar_path data/Xz.tar --batch_size 32 --epochs 10 --train_module dvae
+CUDA_VISIBLE_DEVICES=0 python -m examples.finetune.finetune --color --save_folder ./saved_models --data_path E:/Code/AudioLLM/Xz/888.list --tar_path data/Xz.tar --batch_size 4 --epochs 100 --train_module gpt_speaker --gpt_lora --tar_in_memory --process_ahead
 
 """  # noqa: E501
 
@@ -164,7 +162,7 @@ def main():
     gpt_save_path = os.path.join(save_folder, "gpt.pth")
     speaker_embeds_save_path = os.path.join(save_folder, "speaker_embeds.npz")
     decoder_save_path = os.path.join(save_folder, "decoder.pth")
-    dvae_save_path = os.path.join(save_folder, "DVAE_full.pt")
+    dvae_save_path = os.path.join(save_folder, "dvae.pth")
     if train_module in [TrainModule.GPT_SPEAKER, TrainModule.GPT] and gpt_lora:
         chat.gpt.gpt = chat.gpt.gpt.merge_and_unload()
     if speaker_embeds is not None:
