@@ -5,7 +5,7 @@ import time
 from collections import defaultdict, deque
 from tqdm import tqdm as tqdm_class
 
-from typing import Generator, Iterable, Self, TypeVar
+from typing_extensions import Generator, Iterable, Self, TypeVar
 
 import torch
 import torch.distributed as dist

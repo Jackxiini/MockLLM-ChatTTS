@@ -67,9 +67,9 @@ def _combine_tags(texts: List[str], tags: List[str]) -> str:
         text += t + tg
     return text
 
-
+# 修改map_file_path的默认值为None
 class Normalizer:
-    def __init__(self, map_file_path: str, logger=logging.getLogger(__name__)):
+    def __init__(self, map_file_path: str = None, logger=logging.getLogger(__name__)):
         self.logger = logger
         self.normalizers: Dict[str, Callable[[str], str]] = {}
         self.homophones_map = self._load_homophones_map(map_file_path)
@@ -96,10 +96,12 @@ class Normalizer:
         self.chinese_char_pattern = re.compile(r"[\u4e00-\u9fff]")
         self.english_word_pattern = re.compile(r"\b[A-Za-z]+\b")
         self.character_simplifier = str.maketrans(
+
             {
                 "：": "，",
                 "；": "，",
                 "！": "。",
+                "？": "。",
                 "（": "，",
                 "）": "，",
                 "【": "，",
@@ -114,10 +116,9 @@ class Normalizer:
                 ":": ",",
                 ";": ",",
                 "!": ".",
+                "?": ".",
                 "(": ",",
                 ")": ",",
-                # "[": ",",
-                # "]": ",",
                 ">": ",",
                 "<": ",",
                 "-": ",",

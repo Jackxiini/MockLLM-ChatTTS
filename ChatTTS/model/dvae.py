@@ -231,7 +231,7 @@ class DVAE(nn.Module):
                 nn.Conv1d(dim, dim, 4, 2, 1),
                 nn.GELU(),
             )
-            self.preprocessor_mel = MelSpectrogramFeatures(device=device)
+            self.preprocessor_mel = MelSpectrogramFeatures(device=device).to(device)
             self.encoder: Optional[DVAEDecoder] = DVAEDecoder(**encoder_config)
 
         self.decoder = DVAEDecoder(**decoder_config)

@@ -1,6 +1,6 @@
 {
 	"sha256_asset_Decoder_pt"        : "9964e36e840f0e3a748c5f716fe6de6490d2135a5f5155f4a642d51860e2ec38",
-	"sha256_asset_DVAE_full_pt"      : "7c65f81c3523ca1f11eb08348064449d62fefbf2bf194fa80fdc78e74bcab077",
+	"_sha256_asset_DVAE_full_pt"      : "553eb75763511e23f3e5f86303e2163c5ca775489d637fb635d979c8ae58bbe5",
 	"sha256_asset_Embed_safetensors" : "2ff0be7134934155741b643b74e32fb6bf3eec41257984459b2ed60cdb4c48b0",
 	"sha256_asset_Vocos_pt"          : "09a670eda1c08b740013679c7a90ebb7f1a97646ea7673069a6838e6b51d6c58",
 
